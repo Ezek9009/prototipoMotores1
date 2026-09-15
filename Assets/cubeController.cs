@@ -23,7 +23,7 @@ public class cubeController : MonoBehaviour
 
     private CharacterController controller;
     private PlayerInput playerInput;
-    private InputAction moveAction;
+    //private InputAction moveAction;
     private InputAction lookAction;
 
     
