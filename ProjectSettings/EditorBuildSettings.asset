@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 68150f7f4da7995419d2bb720539b472
   - enabled: 1
+    path: Assets/Starter Assets/Sample/ThirdPersonController/Playground.unity
+    guid: e9017d5f96b9f09489b4b37e1d6eb914
+  - enabled: 1
     path: Assets/Scenes/Derrota1.0.unity
     guid: fb9b7513a63eb39428390c86c96f4966
   m_configObjects:
