@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Derrota1.0.unity
     guid: fb9b7513a63eb39428390c86c96f4966
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: 09824d06da548494eb9ed29c7da994a5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
