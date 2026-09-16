@@ -6,7 +6,7 @@ public class InteractionController : MonoBehaviour
     public float interactionRange = 5f;
 
     public GameObject interactionText;
-
+    public Camera playerCamera;
     private Interactable currentInteractable;
 
     void Update()
@@ -24,19 +24,21 @@ public class InteractionController : MonoBehaviour
     {
         currentInteractable = null;
 
-        Ray ray = new Ray(transform.position, transform.forward);
-          
-        RaycastHit hit;
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
-        if (Physics.Raycast(ray, out hit, interactionRange))
+        RaycastHit[] hits = Physics.RaycastAll(ray, interactionRange);
+        foreach (RaycastHit hit in hits)
         {
             Interactable interactable = hit.collider.GetComponentInParent<Interactable>();
-                
             if (interactable != null)
             {
                 currentInteractable = interactable;
+                break;
             }
         }
+
+        
+     
 
         if (currentInteractable != null)
         {
