@@ -7,6 +7,7 @@ public class EscapePoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameManager.Instance.StopAlarm();
             SceneManager.LoadScene("Victory");
         }
     }

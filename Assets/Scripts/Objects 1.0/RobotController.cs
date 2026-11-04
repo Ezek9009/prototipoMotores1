@@ -20,12 +20,21 @@ public class RobotController : MonoBehaviour
 
     public bool playerDetected = false;
     public float timer = 0f;
+
+    public AudioSource movementAudio;
+    public AudioClip flyingSound;
     private void Start()
     {
         robotRenderer = GetComponent<Renderer>();
         robotRenderer.material.color = normalColor;
 
         timerText.gameObject.SetActive(false);
+        if (movementAudio != null && flyingSound != null)
+        {
+            movementAudio.clip = flyingSound;
+            movementAudio.loop = true;
+            movementAudio.Play();
+        }
     }
     void Update()
     {

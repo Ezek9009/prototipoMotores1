@@ -9,7 +9,9 @@ public class GoldenOrbInteractable : Interactable
     public TMPro.TMP_Text objectiveText;
     public override void Interact()
     {
+        Debug.Log("Se ejecutó Interact de la reliquia");
         GameManager.Instance.hasGoldenOrb = true;
+        GameManager.Instance.ActivateAlarm();
         if (inventoryIcon != null)
             inventoryIcon.SetActive(true);
         
