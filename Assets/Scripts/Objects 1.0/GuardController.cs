@@ -31,18 +31,38 @@ public class GuardController : MonoBehaviour
     public AudioClip walkingSound;
     public AudioClip runningSound;
     private GuardState currentState = GuardState.Patrol;
+    private bool playerWasVisible = false;
 
     void Update()
     {
-        
+        bool canSeePlayer = CanSeePlayer();
+
+
+        if (canSeePlayer && !playerWasVisible)
+        {
+            PlayerDetectionAudio detectionAudio = player.GetComponentInParent<PlayerDetectionAudio>();
+
+            if (detectionAudio != null)
+                detectionAudio.OnPlayerDetected(this);
+        }
+    
+        else if (!canSeePlayer && playerWasVisible)
+        {
+            PlayerDetectionAudio detectionAudio = player.GetComponentInParent<PlayerDetectionAudio>();
+
+            if (detectionAudio != null)
+                detectionAudio.OnPlayerLost(this);
+        }
+
+        playerWasVisible = canSeePlayer;
+
         if (GameManager.Instance != null && GameManager.Instance.alarmActive)
         {
             currentState = GuardState.Chase;
         }
         else
         {
-            
-            if (CanSeePlayer())
+            if (canSeePlayer)
             {
                 currentState = GuardState.Chase;
             }
@@ -51,9 +71,9 @@ public class GuardController : MonoBehaviour
                 currentState = GuardState.Patrol;
             }
         }
-        
+
         UpdateMovementAudio();
-        
+
         switch (currentState)
         {
             case GuardState.Patrol:
@@ -98,7 +118,6 @@ public class GuardController : MonoBehaviour
 
         return false;
     }
-
     void Patrol()
     {
         if (patrolPoints == null || patrolPoints.Length == 0)

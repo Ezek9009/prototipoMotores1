@@ -23,6 +23,8 @@ public class RobotController : MonoBehaviour
 
     public AudioSource movementAudio;
     public AudioClip flyingSound;
+    public AudioClip alertSound;
+    private bool playerWasDetected = false;
     private void Start()
     {
         robotRenderer = GetComponent<Renderer>();
@@ -40,6 +42,23 @@ public class RobotController : MonoBehaviour
     {
         Patrol();
         DetectedPlayer();
+        if (playerDetected && !playerWasDetected)
+        {
+            PlayerDetectionAudio detectionAudio = player.GetComponentInParent<PlayerDetectionAudio>();
+
+            if (detectionAudio != null)
+                detectionAudio.OnPlayerDetected(this);
+        }
+        else if (!playerDetected && playerWasDetected)
+        {
+            PlayerDetectionAudio detectionAudio = player.GetComponentInParent<PlayerDetectionAudio>();
+
+            if (detectionAudio != null)
+                detectionAudio.OnPlayerLost(this);
+        }
+
+        playerWasDetected = playerDetected;
+        UpdateSound();
         if (playerDetected)
         {
             timer += Time.deltaTime;
@@ -49,6 +68,21 @@ public class RobotController : MonoBehaviour
             {
                 SceneManager.LoadScene("Derrota1.0");
             }
+        }
+    }
+
+    void UpdateSound()
+    {
+        if (movementAudio == null)
+            return;
+
+        AudioClip desiredSound = playerDetected ? alertSound : flyingSound;
+
+        if (desiredSound != null && movementAudio.clip != desiredSound)
+        {
+            movementAudio.clip = desiredSound;
+            movementAudio.loop = true;
+            movementAudio.Play();
         }
     }
 

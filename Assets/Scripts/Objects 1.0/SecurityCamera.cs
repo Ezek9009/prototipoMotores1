@@ -25,6 +25,7 @@ public class SecurityCamera : MonoBehaviour
     public TMP_Text timerText;
     private float detectionTimer = 0f;
     private bool playerDetected = false;
+    private bool playerWasDetected = false;
 
     [Header("Sonido")]
     public AudioSource movementAudio;
@@ -113,6 +114,23 @@ public class SecurityCamera : MonoBehaviour
             }
         }
 
+        if (visible && !playerWasDetected)
+        {
+            PlayerDetectionAudio detectionAudio = player.GetComponentInParent<PlayerDetectionAudio>();
+
+            if (detectionAudio != null)
+                detectionAudio.OnPlayerDetected(this);
+        }
+        else if (!visible && playerWasDetected)
+        {
+            PlayerDetectionAudio detectionAudio = player.GetComponentInParent<PlayerDetectionAudio>();
+
+            if (detectionAudio != null)
+                detectionAudio.OnPlayerLost(this);
+        }
+
+        playerWasDetected = visible;
+        
         if (visible)
         {
             detectionTimer += Time.deltaTime;
