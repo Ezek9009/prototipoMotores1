@@ -104,11 +104,24 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
+    "com.unity.probuilder": {
+      "version": "6.0.9",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.shadergraph": "17.0.3",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.settings-manager": "1.0.3"
+      },
+=======
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.2.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+>>>>>>> 8442418341f1ab1c86fcd34c3b2ce3ffbab7adf2
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
@@ -174,7 +187,7 @@
     },
     "com.unity.settings-manager": {
       "version": "2.1.1",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
