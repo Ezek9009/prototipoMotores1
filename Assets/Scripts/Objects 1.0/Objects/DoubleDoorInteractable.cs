@@ -7,6 +7,7 @@ public class DoubleDoorInteractable : Interactable
 
     public float openDistance = 2f;
     public float moveSpeed = 2f;
+    public AudioSource doorAudio;
 
     private Vector3 leftClosedPosition;
     private Vector3 rightClosedPosition;
@@ -27,6 +28,11 @@ public class DoubleDoorInteractable : Interactable
     public override void Interact()
     {
         isOpen = !isOpen;
+
+        if (doorAudio != null)
+        {
+            doorAudio.Play();
+        }
     }
     private void Update()
     {
